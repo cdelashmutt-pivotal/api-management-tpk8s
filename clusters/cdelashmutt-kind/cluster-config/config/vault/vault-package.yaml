@@ -36,12 +36,23 @@ spec:
   template:
     spec:
       fetch:
+      - inline:
+          paths:
+            values.yaml: |
+              server:
+                dev:
+                  enabled: true
       - helmChart:
           name: vault
           version: 0.28.1
           repository:
             url: https://helm.releases.hashicorp.com
+          path: chart/
       template:
-      - helmTemplate: {}
+      - helmTemplate:
+          path: chart
+          namespace: vault
+          valuesFrom:
+          - path: values.yaml
       deploy:
       - kapp: {}
