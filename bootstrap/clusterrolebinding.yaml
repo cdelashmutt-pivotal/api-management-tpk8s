@@ -1,24 +1,16 @@
----
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: install-role
-rules:
-- apiGroups: [""]
-  resources: ["*"]
-  verbs: ["*"]
----
 apiVersion: rbac.authorization.k8s.io/v1
 # This role binding allows "jane" to read pods in the "default" namespace.
 # You need to already have a Role named "pod-reader" in that namespace.
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: install-role-binding
-  namespace: default
+  annotations:
+    kapp.k14s.io/change-group: install-sa
 subjects:
 - kind: ServiceAccount
   name: install
+  namespace: sync
 roleRef:
-  kind: Role
-  name: install-role
+  kind: ClusterRole
+  name: cluster-admin
   apiGroup: rbac.authorization.k8s.io

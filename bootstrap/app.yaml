@@ -1,0 +1,29 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: install-app
+    kapp.k14s.io/change-rule.0: "upsert after upserting install-sa"
+    kapp.k14s.io/change-rule.2: "delete before deleting install-sa"
+  name: gitops-install
+  namespace: sync
+spec:
+  serviceAccountName: install
+  fetch:
+    - git:
+        url: https://github.com/cdelashmutt-pivotal/api-management-tpk8s
+        ref: main
+        subPath: clusters/cdelashmutt-kind/cluster-config
+  template:
+    - sops: 
+        age:
+          privateKeysSecretRef:
+            name: age-key
+    - ytt:
+        paths: 
+        - config
+        valuesFrom:
+        - path: values
+  deploy:
+    - kapp: {}

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: install-sa
+  name: install
+  namespace: sync
