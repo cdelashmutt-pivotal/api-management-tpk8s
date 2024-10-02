@@ -1,0 +1,47 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  # Must be of the form '<spec.refName>.<spec.version>' (Note the period)
+  name: vault.se.tanzu.broadcom.com.0.0.1
+spec:
+  refName: vault.se.tanzu.broadcom.com
+  version: 0.0.1
+  includedSoftware:
+  - displayName: vault
+    version: 1.17.2
+    description: Vault
+  - displayName: vault-k8s
+    version: 1.4.2
+    description: Vault K8s plugin
+  - displayName: vault-csi-provider
+    version: 1.4.3
+    description: Vault CSI plugin
+  kappControllerVersionSelection: 
+    # Constraint to limit acceptable versions for this package.
+    constraints: ">0.40.0 <1.0.0"
+  kubernetesVersionSelection: 
+    # Constraint to limit acceptable versions for this package.
+    constraints: ">1.26.0"
+  valuesSchema:
+    openAPIv3:
+      title: vault.se.tanzu.broadcom.com.0.0.1 values schema
+      examples: []
+      properties: {}
+        # namespace:
+        #   type: string
+        #   description: Namespace where fluent-bit will be installed.
+        #   default: fluent-bit
+        #   examples:
+        #   - fluent-bit
+  template:
+    spec:
+      fetch:
+      - helmChart:
+          name: vault
+          version: 0.28.1
+          repository:
+            url: https://helm.releases.hashicorp.com
+      template:
+      - helmTemplate: {}
+      deploy:
+      - kapp: {}

@@ -1,0 +1,22 @@
+---
+apiVersion: spaces.tanzu.vmware.com/v1alpha1
+kind: Space
+metadata:
+  name: cdelashmutt-api-portal
+  namespace: default
+spec:
+  availabilityTargets:
+  - name: cdelashmutt-kind
+    replicas: 1
+  template:
+    spec:
+      profiles:
+      - name: custom-networking.aws-work.grogcsave.net
+        values:
+          inline: null
+      - name: spring-dev.tanzu.vmware.com
+        values:
+          inline: null
+      resources: {}
+  updateStrategy: {}
+status: {}
