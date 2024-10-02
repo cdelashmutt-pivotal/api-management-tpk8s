@@ -38,11 +38,10 @@ spec:
       fetch:
       - inline:
           paths:
-            values.yaml: |
+            values/values.yaml: |
               server:
                 dev:
                   enabled: true
-        path: .
       - helmChart:
           name: vault
           version: 0.28.1
@@ -54,6 +53,6 @@ spec:
           path: chart/
           namespace: vault
           valuesFrom:
-          - path: values.yaml
+          - path: values/values.yaml
       deploy:
       - kapp: {}
