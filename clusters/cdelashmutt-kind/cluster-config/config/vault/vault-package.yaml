@@ -38,10 +38,11 @@ spec:
       fetch:
       - inline:
           paths:
-            values/values.yaml: |
+            values.yaml: |
               server:
                 dev:
                   enabled: true
+        path: values
       - helmChart:
           name: vault
           version: 0.28.1
