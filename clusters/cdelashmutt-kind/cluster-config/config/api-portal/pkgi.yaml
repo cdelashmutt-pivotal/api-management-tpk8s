@@ -9,6 +9,7 @@ metadata:
     kapp.k14s.io/change-rule.1: "delete before deleting pkgr"
     kapp.k14s.io/change-rule.2: "upsert after upserting sso-credentials"
     kapp.k14s.io/change-rule.3: "delete before deleting sso-credentials"
+    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: api-portal-overlay
 spec:
   serviceAccountName: install
   packageRef:
