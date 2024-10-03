@@ -1,0 +1,11 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: tap
+  namespace: sync
+  annotations:
+    kapp.k14s.io/change-group: pkgr
+spec:
+  fetch:
+    imgpkgBundle:
+      image: localhost:5001/tap-packages:1.12.1
