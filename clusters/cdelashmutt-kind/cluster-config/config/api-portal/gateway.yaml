@@ -1,23 +1,23 @@
 ---
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: api-portal-gateway
+  name: gateway
   namespace: api-portal
   annotations:
     kapp.k14s.io/change-group: gateway
     kapp.k14s.io/change-rule.0: "upsert after upserting pkgi"
     kapp.k14s.io/change-rule.1: "delete before deleting pkgi"
 spec:
-  gatewayClassName: istio
-  listeners:
-  - name: http
-    hostname: "api-portal.kind.local"
-    port: 80
-    protocol: HTTP
-    allowedRoutes:
-      namespaces:
-        from: Same
+  selector:
+    istio: istio-ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - '*'
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
