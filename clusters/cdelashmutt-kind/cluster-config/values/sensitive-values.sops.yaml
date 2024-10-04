@@ -1,6 +1,6 @@
 apiPortal:
-    sops:
-        clientId: ENC[AES256_GCM,data:LBGn8vCON3tELqj0cd3480g3fkA2JBCjSu70eWjF8YSeh50=,iv:aTBfguMYhJxMtWlEE1GFRy4R9HvBi9XSUwMo1OHrtkw=,tag:w74Ps2bjFM5lEpy6wgzvMA==,type:str]
+    sso:
+        clientId: ENC[AES256_GCM,data:YUcRqB2KBbe+ST/w4S79UFG4/Ms4VvQyMiG9ksEQaF5HJOw=,iv:LZS8hhixihaiXOjL+EcjptuR4X61Xl5KTqGMvmgWz+g=,tag:w8bGFAEWPOt998y7sW5pPw==,type:str]
         clientSecret: ""
 sops:
     kms: []
@@ -17,8 +17,8 @@ sops:
             OTU5ZVdIaHltY1ZZYVdLZDduQm4wWW8K5p4jh45KYc2xwSPy1iT8QebwrlNa161a
             /6m6ZTqKIof3w7YZN+VUMzXrEaUlfwEjl5Xy/fIaRCxhlocbT4R8cg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-04T21:49:16Z"
-    mac: ENC[AES256_GCM,data:lP5T/quP2MmnaQATKKpCUckRIcd1lrcEWnNgyDIdZDNGKTHWdO8XLpWALx771vJoD8hiaq/1Je5m9o9xB3CNGA3lHXuwuLc1uejHs6r450gtM7LJEXdQC5xPs9JyUdlbikW3mCNd59tQzrpcqFaVMnfT6RLR8XygaKomIHKAj4U=,iv:kXS809hHGn7F7hHkseqvdTJSZv4aYcoWq0WAorCbaus=,tag:CuhxDdKbYmbOxhVTImHB1g==,type:str]
+    lastmodified: "2024-10-04T21:49:56Z"
+    mac: ENC[AES256_GCM,data:MOJ/HlbEDdc/nkYCrB4tBcTDqctT6YwKux6oE1HLJ1sWLo07JHwuBLDJ9HWRnj5vGjMVPUJoT/RqMAY5iKSasDvxSRiHp3EUcogHKVs4LYb8VJ6kn7oREW3Ig3AsTUuW6aihdyYqaZd6iUS7y1PortxJVB82k9XrQm11qZzk0YM=,iv:u4fBtY+TBS9A4zf5GX4uT12h/+SvTbPgRELM62Iod90=,tag:e5AE92QXM7Bd2ViJ9Tw+qw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.0
