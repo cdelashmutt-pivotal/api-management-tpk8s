@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+  namespace: auth-server
+spec:
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      containers:
+      - name: auth-server
+        image: kind-registry.local:5000/authserver
+        args:
+        - --config=/config/config.yaml
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          readOnly: true
+  volumes:
+    - name: config
+      secret:
+        secretName: config
