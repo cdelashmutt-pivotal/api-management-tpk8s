@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: auth-server
-        image: kind-registry.local:5000/authserver
+        image: registry.mac.grogscave.net:5000/authserver
         args:
         - --config=/config/config.yaml
         resources:
