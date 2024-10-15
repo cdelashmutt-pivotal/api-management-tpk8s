@@ -1,7 +1,7 @@
 apiPortal:
     sso:
-        clientId: ENC[AES256_GCM,data:YUcRqB2KBbe+ST/w4S79UFG4/Ms4VvQyMiG9ksEQaF5HJOw=,iv:LZS8hhixihaiXOjL+EcjptuR4X61Xl5KTqGMvmgWz+g=,tag:w8bGFAEWPOt998y7sW5pPw==,type:str]
-        clientSecret: ENC[AES256_GCM,data:a0iUM/5mz8mbBf+nD4MsqItENtqm4NTw8geAF0iNew60kMg=,iv:GYhCZ6l3FgAwnrle36QdV6ZLx7KhD+tizQIYlH4RRjU=,tag:qQZpHbgcTQWvtCjrr8miZg==,type:str]
+        clientId: ENC[AES256_GCM,data:y+49P8UL9FJRPHDW0SESgqc=,iv:iztJTWYkGSgZCbhItkJkjFiYjK7pY/Bfv0isCN8Wq+o=,tag:30ZbmWfl8i71FubZaSJSOw==,type:str]
+        clientSecret: ENC[AES256_GCM,data:oUqAxWvBKiLBRRZXZR0lLKNL/neD,iv:torDPnfCPFRC2T/fSNoLznobBMBtn4RArRldSsqghNo=,tag:XpIci+IY90Ep2YmO89E/Mw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -17,8 +17,8 @@ sops:
             OTU5ZVdIaHltY1ZZYVdLZDduQm4wWW8K5p4jh45KYc2xwSPy1iT8QebwrlNa161a
             /6m6ZTqKIof3w7YZN+VUMzXrEaUlfwEjl5Xy/fIaRCxhlocbT4R8cg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-04T21:58:31Z"
-    mac: ENC[AES256_GCM,data:79XAUXdbnNyReZPdtU8II4l8hEVAizyepT4Ha6N8zGXt2FZC/3of91hvq6uzhetiP1xWhIyQlh34AEAxHIHtV0wjDa1qk5H8XB6smqCvWXjMbIIaCxdBV/lx/RMXyPtz6JXnSnXQFH5jke8JvV6X7jVDlmnF+mrkhNBDgiAEE44=,iv:k94+01aVnwAn28JohFx4ue++OakvW1glZv9lW5j7dIY=,tag:kwxGA/L4aUxC9EkCd04s3A==,type:str]
+    lastmodified: "2024-10-15T16:56:30Z"
+    mac: ENC[AES256_GCM,data:KvPG9uXvyoKb+EehFr0FVErlstsjdet40k4moG3ZYhxs0DojR92aauM0FSozBr+VTRSHyTd1WDn2lAN5wuWGJTgpdaVdhMlSSEaxLoZPCKzbbB0RnxDEG7t+5nWWjy4JngnIwN9E15HQJFZKip5oB4QRR5ea3J8fFjFwwZht984=,iv:qJXTggTxJS3vLdI1+c0UQtrTV9uqvOWqGO7UtZ/Jnsc=,tag:haCz4+BcbhZUzHRQ0ugPMA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.0
