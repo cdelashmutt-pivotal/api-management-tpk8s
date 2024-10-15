@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-server-ingress
+  namespace: auth-server
+  annotations:
+    kubernetes.io/ingress.class: istio
+spec:
+  rules:
+  - host: auth-server.kind.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: auth-server
+            port:
+              number: 9000
