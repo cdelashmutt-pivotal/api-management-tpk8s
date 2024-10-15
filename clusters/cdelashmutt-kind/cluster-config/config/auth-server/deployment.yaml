@@ -23,10 +23,10 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 9000
-        volumeMounts:
-        - name: config
-          mountPath: /config
-          readOnly: true
+      volumeMounts:
+      - name: config
+        mountPath: /config
+        readOnly: true
   volumes:
     - name: config
       secret:
