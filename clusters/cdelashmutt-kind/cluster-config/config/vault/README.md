@@ -37,3 +37,9 @@ vault write auth/kubernetes/role/api-portal-role \
  bound_service_account_namespaces=api-portal \
  policies=api-portal-policy \
  ttl=24h
+
+vault write auth/kubernetes/role/gateway-role \
+ bound_service_account_names=spring-cloud-gateway-svc-acc \
+ bound_service_account_namespaces=* \
+ policies=gateway-policy \
+ ttl=24h
