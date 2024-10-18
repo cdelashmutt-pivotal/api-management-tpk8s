@@ -45,7 +45,7 @@ spec:
         path: values
       - helmChart:
           name: vault
-          version: 0.28.1
+          version: 0.22.1
           repository:
             url: https://helm.releases.hashicorp.com
         path: chart
