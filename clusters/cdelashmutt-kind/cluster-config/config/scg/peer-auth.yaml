@@ -1,0 +1,8 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: spring-cloud-gateway
+  namespace: spring-cloud-gateway
+spec:
+  mtls:
+    mode: DISABLE
