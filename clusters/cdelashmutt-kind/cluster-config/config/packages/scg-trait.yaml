@@ -26,7 +26,7 @@ spec:
       - kapp: {}
       fetch:
       - imgpkgBundle:
-          image: registry.mac.grogscave.net:5000/packages/scg-vault-trait@sha256:829b117474836a77bf8ac27143de5346094631f5b72df94ca7a4873c32de6491
+          image: registry.mac.grogscave.net:5000/packages/scg-vault-trait@sha256:09d4f82e74c1ecdb445f0c9cb782011b91e650b8453ae36a80172131312954cb
       template:
       - ytt:
           paths:
