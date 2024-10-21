@@ -1,0 +1,430 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  annotations:
+    capability.tanzu.vmware.com/requires: |
+      [{ "name": "spring-cloud-gateway.tanzu.vmware.com" }]
+    kbld.k14s.io/images: |
+      - origins:
+        - preresolved:
+            url: registry.mac.grogscave.net:5000/packages/scg-vault-trait@sha256:09d4f82e74c1ecdb445f0c9cb782011b91e650b8453ae36a80172131312954cb
+        url: registry.mac.grogscave.net:5000/packages/scg-vault-trait@sha256:09d4f82e74c1ecdb445f0c9cb782011b91e650b8453ae36a80172131312954cb
+  labels:
+    spaces.tanzu.vmware.com/trait-package: "true"
+  name: api-gateway-vault.spring.tanzu.vmware.com.0.0.1
+  namespace: tanzu-package-repo-global
+spec:
+  licenses:
+  - VMware General Terms
+  refName: api-gateway-vault.spring.tanzu.vmware.com
+  releaseNotes: |
+    Hacked version of api-gateway trait to allow specifying vault config
+  releasedAt: null
+  template:
+    spec:
+      deploy:
+      - kapp: {}
+      fetch:
+      - imgpkgBundle:
+          image: registry.mac.grogscave.net:5000/packages/scg-vault-trait@sha256:829b117474836a77bf8ac27143de5346094631f5b72df94ca7a4873c32de6491
+      template:
+      - ytt:
+          paths:
+          - config/
+          - values.yaml
+      - kbld: {}
+  valuesSchema:
+    openAPIv3:
+      properties:
+        api:
+          properties:
+            cors:
+              properties:
+                allowCredentials:
+                  description: Whether user credentials are supported.
+                  type: boolean
+                allowedHeaders:
+                  description: |
+                    Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value "*" allows actual requests to send any header. A header name is not required to be listed if it is one of: Cache-Control, Content-Language, Expires, Last-Modified, or Pragma.
+                  items:
+                    type: string
+                  type: array
+                allowedMethods:
+                  description: |
+                    Set the HTTP methods to allow, e.g. "GET", "POST", "PUT", etc. The special value "*" allows all methods. If not set, only "GET" and "HEAD" are allowed.
+                  items:
+                    type: string
+                  type: array
+                allowedOriginPatterns:
+                  description: |
+                    Alternative to allowedOrigins that supports more flexible origins patterns with "*" anywhere in the host name in addition to port lists. In contrast to allowedOrigins which only supports "*" and cannot be used with allowCredentials, when an allowedOriginPattern is matched, the Access-Control-Allow-Origin response header is set to the matched origin and not to "*" nor to the pattern. Therefore allowedOriginPatterns can be used in combination with allowCredentials set to true.
+                  items:
+                    type: string
+                  type: array
+                allowedOrigins:
+                  description: |
+                    Set the origins to allow, e.g. "https://domain1.com". The special value "*" allows all domains.
+                  items:
+                    type: string
+                  type: array
+                exposedHeaders:
+                  description: |
+                    Set the list of response headers other than simple headers (i.e. Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, or Pragma) that an actual response might have and can be exposed. Note that "*" is not a valid exposed header value
+                  items:
+                    type: string
+                  type: array
+                maxAge:
+                  description: Configure how long, in seconds, the response from a
+                    pre-flight request can be cached by clients.
+                  type: integer
+                perRoute:
+                  additionalProperties:
+                    properties:
+                      allowCredentials:
+                        description: Whether user credentials are supported.
+                        type: boolean
+                      allowedHeaders:
+                        description: |
+                          Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value "*" allows actual requests to send any header. A header name is not required to be listed if it is one of: Cache-Control, Content-Language, Expires, Last-Modified, or Pragma.
+                        items:
+                          type: string
+                        type: array
+                      allowedMethods:
+                        description: |
+                          Set the HTTP methods to allow, e.g. "GET", "POST", "PUT", etc. The special value "*" allows all methods. If not set, only "GET" and "HEAD" are allowed.
+                        items:
+                          type: string
+                        type: array
+                      allowedOriginPatterns:
+                        description: |
+                          Alternative to allowedOrigins that supports more flexible origins patterns with "*" anywhere in the host name in addition to port lists. In contrast to allowedOrigins which only supports "*" and cannot be used with allowCredentials, when an allowedOriginPattern is matched, the Access-Control-Allow-Origin response header is set to the matched origin and not to "*" nor to the pattern. Therefore allowedOriginPatterns can be used in combination with allowCredentials set to true.
+                        items:
+                          type: string
+                        type: array
+                      allowedOrigins:
+                        description: |
+                          Set the origins to allow, e.g. "https://domain1.com". The special value "*" allows all domains.
+                        items:
+                          type: string
+                        type: array
+                      exposedHeaders:
+                        description: |
+                          Set the list of response headers other than simple headers (i.e. Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, or Pragma) that an actual response might have and can be exposed. Note that "*" is not a valid exposed header value
+                        items:
+                          type: string
+                        type: array
+                      maxAge:
+                        description: Configure how long, in seconds, the response
+                          from a pre-flight request can be cached by clients.
+                        type: integer
+                    type: object
+                  description: |
+                    (Deprecated: per-route CORS can be configured using route metadata in the route configuration) A map of URL Patterns to Spring Framework CorsConfiguration. See https://cloud.spring.io/spring-cloud-gateway/reference/html/#cors-configuration for an example.
+                  type: object
+              type: object
+            description:
+              description: |
+                (Deprecated: use "springcloudgateway.tanzu.vmware.com/api-description" annotation) Detailed description of the APIs available on the Gateway instance (default: auto-generated description based on Gateway name and namespace).
+              type: string
+            documentation:
+              description: |
+                (Deprecated: use "springcloudgateway.tanzu.vmware.com/api-documentation" annotation) The URL of an external resource for extended documentation. Value MUST be in the format of a URL.
+              type: string
+            groupId:
+              description: |
+                Unique identifier for the group of APIs available on the Gateway instance (default: normalized title of the Gateway instance).
+              pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+              type: string
+            serverUrl:
+              description: |
+                Publicly accessible user-facing URL of this Gateway instance.
+              type: string
+            title:
+              description: |
+                (Deprecated: use "springcloudgateway.tanzu.vmware.com/api-title" annotation) Title describing the context of the APIs available on the Gateway instance (default: name of the Gateway instance).
+              type: string
+            version:
+              default: unspecified
+              description: |
+                Version of APIs available on this Gateway instance (default: `unspecified`).
+              type: string
+          type: object
+        bindings:
+          description: Secrets classified by service name which contains the properties
+            to bind it into SCG
+          properties:
+            redis:
+              description: Redis Binding configuration
+              properties:
+                secret:
+                  description: Secret in the same namespace which contains properties
+                    to configure the service
+                  type: string
+              type: object
+          type: object
+        client:
+          description: TLS configuration for trusted upstream services.
+          properties:
+            tls:
+              properties:
+                secretNames:
+                  description: TLS secret names containing trusted certificates for
+                    upstream connections.
+                  items:
+                    type: string
+                  type: array
+              type: object
+          type: object
+        count:
+          default: 1
+          description: Number of gateway pods per gateway instance. Set to 2 or more
+            for HA
+          type: integer
+        env:
+          description: List of additional environment variables to apply to the gateway
+          items:
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+            type: object
+          type: array
+        extensions:
+          properties:
+            custom:
+              description: Array of custom extensions to load (name must match the
+                ConfigMap or PersistentVolumeClaim name)
+              items:
+                type: string
+              type: array
+            vault:
+              description: API Key Integration to vault
+              properties:
+                path:
+                  description: Path within vault to retrieve keys from
+                  type: string
+                roleName:
+                  description: Role name to assume to lookup keys
+                  type: string
+              type: object
+          type: object
+        gateway:
+          properties:
+            name:
+              default: spring-cloud-gateway
+              description: Name of the Spring Cloud Gateway resource
+              type: string
+            namespace:
+              description: Namespace where the Gateway will be installed
+              type: string
+          type: object
+        healthCheck:
+          description: Active Health Check that can be applied before routing a request
+            to upstream
+          properties:
+            enabled:
+              default: false
+              type: boolean
+            interval:
+              default: 25s
+              description: Interval to check Health Check endpoints (300s, 5m, ...)
+              pattern: \d+(s|m|h)$
+              type: string
+          type: object
+        java-opts:
+          description: JVM parameters for the Gateway instance
+          type: string
+        observability:
+          description: |
+            Properties to configure metrics and tracing
+          properties:
+            metrics:
+              description: |
+                Properties to configure metrics
+              properties:
+                prometheus:
+                  description: |
+                    Properties to configure Prometheus metrics
+                  properties:
+                    annotations:
+                      properties:
+                        enabled:
+                          description: |
+                            If scrapping annotations should be included in the Pod
+                          type: boolean
+                      type: object
+                    enabled:
+                      description: |
+                        If a Prometheus endpoint should be exposed
+                      type: boolean
+                    serviceMonitor:
+                      properties:
+                        enabled:
+                          description: |
+                            If a Prometheus ServiceMonitor should be added
+                          type: boolean
+                        labels:
+                          additionalProperties:
+                            type: string
+                          description: |
+                            Labels to add to the service monitor, e.g. to be picked up by the Prometheus serviceMonitorSelector
+                          type: object
+                      type: object
+                  type: object
+                wavefront:
+                  description: |
+                    Properties to configure Wavefront metrics
+                  properties:
+                    enabled:
+                      description: |
+                        If Wavefront metrics should be pushed
+                      type: boolean
+                  type: object
+              type: object
+            tracing:
+              description: |
+                Properties to configure tracing
+              properties:
+                wavefront:
+                  description: |
+                    Properties to configure Wavefront tracing
+                  properties:
+                    enabled:
+                      description: |
+                        If Wavefront traces should be pushed
+                      type: boolean
+                  type: object
+                zipkin:
+                  description: |
+                    Properties to configure Zipkin tracing
+                  properties:
+                    enabled:
+                      description: |
+                        If Zipkin traces should be pushed
+                      type: boolean
+                    url:
+                      description: |
+                        The Zipkin server url
+                      type: string
+                  type: object
+              type: object
+            wavefront:
+              description: |
+                To configure the Wavefront settings common to both metrics and tracing
+              properties:
+                application:
+                  description: |
+                    The Wavefront application name.
+                  type: string
+                secret:
+                  description: |
+                    The secret containing the 'api-token' and 'uri' fields, for the Wavefront API token and URI endpoint
+                  type: string
+                service:
+                  description: |
+                    The Wavefront service name.
+                  type: string
+                source:
+                  description: |
+                    The Wavefront source.
+                  type: string
+              type: object
+          type: object
+        resources:
+          description: |
+            Requested amount of compute resources for the Gateway instance
+          properties:
+            limits:
+              properties:
+                cpu:
+                  type: string
+                memory:
+                  type: string
+              type: object
+            requests:
+              properties:
+                cpu:
+                  type: string
+                memory:
+                  type: string
+              type: object
+          type: object
+        responseCache:
+          description: |
+            Default HTTP response cache configuration
+          properties:
+            local:
+              properties:
+                global:
+                  description: If the value is true, the response cache filter will
+                    be applied automatically to every route
+                  type: boolean
+                size:
+                  description: Maximum size of cache (10MB, 900KB, 1GB, ...) allowed
+                    before entries are evicted
+                  type: string
+                timeToLive:
+                  description: Maximum allowed age of a cache entry (300s, 5m, ...)
+                    before it is expired
+                  pattern: \d+(s|m|h)$
+                  type: string
+              type: object
+          type: object
+        server:
+          description: TLS termination configuration.
+          properties:
+            tls:
+              description: List of hosts and secrets to enable TLS termination.
+              items:
+                properties:
+                  hosts:
+                    description: List of hosts included in the TLS certificate. The
+                      values in this list must match the names used in the tlsSecret.
+                    items:
+                      type: string
+                    type: array
+                  secretName:
+                    description: Name of the TLS secret used to terminate TLS traffic.
+                    type: string
+                type: object
+              type: array
+          type: object
+        service:
+          description: Configuration of the Kubernetes service for the gateway
+          properties:
+            nodePort:
+              description: |
+                The port on which this service is exposed when type=NodePort or LoadBalancer. Usually assigned by the system.
+              type: integer
+            type:
+              description: Determines how the Service is exposed. Defaults to ClusterIP.
+              enum:
+              - ClusterIP
+              - NodePort
+              - LoadBalancer
+              type: string
+          type: object
+        sso:
+          properties:
+            inactive-session-expiration-in-minutes:
+              description: Time to live of inactive sessions in minutes. If set to
+                0 then sessions never expire.
+              type: integer
+            roles-attribute-name:
+              description: 'Attribute name used to extract user roles for Roles filter
+                (default: ''roles'')'
+              type: string
+            secret:
+              description: Secret name to be used for SSO configuration
+              type: string
+            tls:
+              description: Configure trusted certificates for SSO connections
+              properties:
+                secretName:
+                  description: TLS secret to be used for SSO issuer connection
+                  type: string
+              type: object
+          type: object
+      title: api-gateway.spring.tanzu.vmware.com values schema
+  version: 0.0.1
